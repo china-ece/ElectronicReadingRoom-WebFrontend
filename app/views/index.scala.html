@@ -1,7 +1,92 @@
-@(message: String)
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message, style = "Java")
-    
-}
+@import helper._
+@import helper.twitterBootstrap._
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>华东有色数字资料馆</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="华东有色数字资料馆">
+    <meta name="author" content="techzhou">
+    <link rel="stylesheet" href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")">
+    <link rel="stylesheet" href="@routes.Assets.at("bootstrap/css/bootstrap-responsive.min.css")">
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/jquery.pageslide.css")">
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="brand" href="#">华东有色数字资料馆</a>
+            <div class="navbar-search pull-left">
+                <input id="search_query" type="text" class="search-query" placeholder="搜索" x-webkit-speech x-webkit-grammar="bUIltin:search" lang="zh-CN">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well sidebar-nav">
+                <ul id="sidebar" class="nav nav-list">
+                    <div class="alert alert-info">
+                        请在上方搜索框输入查询关键字，敲击回车查询。
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div id="detail" class="span9">
+            <div class="subhead">
+                <h1 id="name"></h1>
+                <p id="attribute" class="lead">
+                </p>
+            </div>
+            <div class="subnav">
+                <ul class="nav nav-pills">
+                    <li><a href="#attachdoc">正文资料</a></li>
+                    <li><a href="#attachform">附表资料</a></li>
+                    <li><a href="#attachpic">附图资料</a></li>
+                    <li><a href="#attachelse">附件资料</a></li>
+                    <li><a href="#other">其他资料</a></li>
+                </ul>
+            </div>
+            <div id="attachdoc" class="page-header">
+                <h2>正文资料</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                </table>
+            </div>
+            <div id="attachform" class="page-header">
+                <h2>附表资料</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                </table>
+            </div>
+            <div id="attachpic" class="page-header">
+                <h2>附图资料</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                </table>
+            </div>
+            <div id="attachelse" class="page-header">
+                <h2>附件资料</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                </table>
+            </div>
+            <div id="other" class="page-header">
+                <h2>其他资料</h2>
+                <table class="table table-striped table-bordered table-condensed">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="reader" class="container" style="display: none;">
+    <div class="row">
+        <a href="javascript:$.pageslide.close()" class="pull-right">关闭</a>
+        <div class="span12">aaa</div>
+    </div>
+</div>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.pageslide.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/homepage.js")"></script>
+</body>
+</html>
