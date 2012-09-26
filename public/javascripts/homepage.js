@@ -26,7 +26,7 @@ $(document).ready(
                                 items += '<li data=\'' + JSON.stringify(element) + '\'><a href="#">' + element.name + '</a></li>';
                             });
                         });
-                        if(items.length == 0)
+                        if(items.length == 0)//安徽省定远、嘉山、五河里一带1976年地质普查找矿设计（摘抄）@皖中震旦系划分
                             $('#sidebar').text($('#search_query').val() + ' 查无结果');
                         else{
                             $('#sidebar').html(items);
@@ -83,13 +83,14 @@ function getDetail(id) {
                 $('#' + key + ' table').append('<tr><td>查无结果</td></tr>');
             else{
                 $.each(val, function(index, element) {
-                    $('#' + key + ' table').append('<tr onclick=readDoc(\"'+ key + '\",\"'+ element.id +'\")><td>' + element.id +'</td><td>' + element.name + '</td></tr>');
+                    $('#' + key + ' table').append('<tr onclick=readDoc(\"'+ encodeURIComponent(doEncode($("#name").text() + "@" + element.name)) +'\")><td>' + element.id +'</td><td>' + element.name + '</td></tr>');
                 });
             }
         });
     });
 }
 
-function readDoc(key,id) {
+function readDoc(base64) {
     $.pageslide({ direction: 'left', href: '#reader' });
+    setTimeout(function(){$('#pageslide #PdfPackageReader')[0].download(base64);}, 1000);
 }

@@ -1,16 +1,16 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import com.avaje.ebean.EbeanServer;
 import com.avaje.ebean.ExpressionList;
 import models.*;
 import org.codehaus.jackson.map.ObjectMapper;
-import play.*;
-import play.db.ebean.Model;
-import play.mvc.*;
+import play.Play;
+import play.mvc.Controller;
+import play.mvc.Result;
+import utils.Base64;
+import views.html.index;
 
-import views.html.*;
-
+import java.io.File;
 import java.io.StringWriter;
 import java.util.Map;
 import java.util.Set;
@@ -69,8 +69,26 @@ public class Application extends Controller {
         try{
             mapper.writeValue(writer, detailMap);
         }catch (Exception e){
+            e.printStackTrace();
             return internalServerError();
         }
         return ok(writer.toString());
+    }
+
+    public static Result findZipFile(String base64) {
+        try{
+            if(request().headers().get("WHATSLOVE")[0].equals("Love is like a cup of bitter wine")){
+                File dir = new File(Play.application().configuration().getString("filelocation"));
+                String origin = new String(Base64.decodeFast(base64), "UTF-8");
+                String path = dir.getAbsolutePath() + "/" + origin.replace("@","/") + ".zip";
+                File zipfile = new File(path);
+                response().setHeader("Content-Length", String.valueOf(zipfile.length()));
+                return ok(zipfile);
+            }
+            return notFound("love");
+        }catch (Exception e) {
+            e.printStackTrace();
+            return notFound(e.toString());
+        }
     }
 }

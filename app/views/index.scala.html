@@ -81,12 +81,21 @@
 </div>
 <div id="reader" class="container" style="display: none;">
     <div class="row">
-        <a href="javascript:$.pageslide.close()" class="pull-right">关闭</a>
-        <div class="span12">aaa</div>
+        <a href="javascript:$.pageslide.close()" class="pull-right"><span class="btn btn-danger">关 闭</span></a>
+        <div class="span12">
+            <object type="application/x-shockwave-flash" id="PdfPackageReader" name="PdfPackageReader" align="middle" data="@routes.Assets.at("flash/PdfPackageReader.swf")" width="100%" height="90%">
+                <param name="quality" value="high">
+                <param name="bgcolor" value="#869ca7">
+                <param name="allowscriptaccess" value="sameDomain">
+                <param name="allowfullscreen" value="true">
+                <param name="wmode" value="transparent">
+            </object>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")"></script>
 <script type="text/javascript" src="@routes.Assets.at("javascripts/jquery.pageslide.min.js")"></script>
+<script type="text/javascript" src="@routes.Assets.at("javascripts/base64.js")"></script>
 <script type="text/javascript" src="@routes.Assets.at("javascripts/homepage.js")"></script>
 </body>
 </html>
